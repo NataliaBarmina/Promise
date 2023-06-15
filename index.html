@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // применение async await, параметров запроса
+        async function getAbuse() {
+            const response = await fetch("http://jservice.io/api/clues?category=96&value=800&offset=20");
+            const texts = await response.json();
+            for (let text of texts) {
+                console.log(`question: ${text.question}, answer: ${text.answer}`);
+            }
+        }
+        getAbuse();
+    </script>
+</body>
+
+</html>

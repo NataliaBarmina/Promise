@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // функция с промисом, ответ в виде текста, с json не работает
+        function getAbuse() {
+            fetch("http://numbersapi.com/10/25/date")
+                .then(response => {
+                    const a = response.text();
+                    console.log(a);
+                    return a;
+                })
+                .then(a => console.log(a));
+        }
+        getAbuse();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // //цепочка промисов + обработка ошибок
+        // fetch("http://jservice.io/api/clues?category=96&value=800&offset=20")
+        //     .then(response => response.json())
+        //     // .then(response => console.log(response)) - так сделлать не получится, потому что дальше получится undefined 
+        //     .then(response => {
+        //         console.log(response[0].answer)
+        //         console.log(response[0].question)//не очень удобно, т.к. каждое следующее действие основывается на предыдущем
+        //     }).catch(err => console.log(`ошибка: ${err}`))
+
+        //цепочка промисов + обработка ошибок
+        async function PromiseChain() {
+            const arrayClues = await fetch("http://jservice.io/api/clues?category=96&value=800&offset=20");
+            const jsonClues = await arrayClues.json();
+            console.log(jsonClues);
+            const objectClues = await jsonClues[0];
+            console.log(objectClues);
+            const question = await objectClues.question;
+            console.log(question);
+            const answer = await objectClues.answer;
+            console.log(answer);
+        }
+        PromiseChain().catch(err => console.log(`ошибка: ${err}`));   // более понятно, последовательно, не нужно задумываться, что вернулось в предыдущем действии
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // цепочка промисов + генерация ошибки(throw )
+        const PromiseChain = new Promise((resolve, reject) => {
+            fetch("http://jservice.io/api/clues?category=96&value=800&offset=20")
+                .then(response => response.json())
+                .then(response => {
+                    a = `answer: ${response[0].answer} question: ${response[0].question}`
+                    console.log(a);
+                    return a;
+                })
+                .then(a => {
+                    if (!a.includes('await')) throw new Error("Данные неполны: нет await")
+                }).catch(e => console.log(`ошибка: ${e.message}`))
+        })
+        console.log(PromiseChain);
+    </script>
+</body>
+
+</html>
