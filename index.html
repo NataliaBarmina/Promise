@@ -10,14 +10,14 @@
 <body>
     <script>
         // применение async await, параметров запроса
-        async function getAbuse() {
+        async function getQuizQuestion() {
             const response = await fetch("http://jservice.io/api/clues?category=96&value=800&offset=20");
             const texts = await response.json();
             for (let text of texts) {
                 console.log(`question: ${text.question}, answer: ${text.answer}`);
             }
         }
-        getAbuse();
+        getQuizQuestion();
     </script>
 </body>
 
